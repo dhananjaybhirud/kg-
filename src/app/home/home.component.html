@@ -1,0 +1,29 @@
+<div class="container">
+  <form class="searchform cf">
+    <input type="text" placeholder="Is it me you’re looking for?" />
+    <select>
+      <option>All</option>
+      <option>Title</option>
+      <option>Decsription</option>
+      <option>Keywords</option>
+    </select>
+    <button type="submit">Search</button>
+  </form>
+
+  <section>
+    <div class="music-item" *ngFor="let m of list">
+      <img src="https://placekitten.com/640/360" alt="" />
+      <div class="m-details">
+        <h5 class="title">sdfsdf</h5>
+        <p class="duration">(Duration: 3 min26 sec)</p>
+        <div class="des">this dosdnsmndksm</div>
+        <div>
+          <a class="play"> &#9654; Play Vocal </a>
+        </div>
+        <div>
+          <a class="lyrics">Lyrics (PDF) </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
