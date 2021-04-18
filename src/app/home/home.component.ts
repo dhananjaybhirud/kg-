@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -7,18 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  data;
   list;
+  stitle = new FormControl('');
+  category = new FormControl('');
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.http
       .get('http://localhost:4200/assets/list.json')
-      .subscribe((data) => {
+      .subscribe((data: any) => {
         console.log(data);
-        this.data = data;
-        this.list = data[0];
+        this.list = data?.sections[0].assets;
         console.log(this.list);
       });
   }

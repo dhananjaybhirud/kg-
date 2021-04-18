@@ -1,27 +1,39 @@
 <div class="container">
   <form class="searchform cf">
-    <input type="text" placeholder="Is it me you’re looking for?" />
-    <select>
-      <option>All</option>
-      <option>Title</option>
-      <option>Decsription</option>
-      <option>Keywords</option>
+    <input
+      type="text"
+      [formControl]="stitle"
+      placeholder="Is it me you’re looking for?"
+    />
+    <select [formControl]="stitle">
+      <option value="">All</option>
+      <option value="title">Title</option>
+      <option value="description">Description</option>
+      <option value="keywords">Keywords</option>
     </select>
     <button type="submit">Search</button>
   </form>
 
   <section>
-    <div class="music-item" *ngFor="let m of list">
+    <div
+      class="music-item"
+      *ngFor="
+        let m of list
+          | search: [stitle.value, category.value]:['title', 'catName']
+      "
+    >
       <img src="https://placekitten.com/640/360" alt="" />
       <div class="m-details">
-        <h5 class="title">sdfsdf</h5>
-        <p class="duration">(Duration: 3 min26 sec)</p>
-        <div class="des">this dosdnsmndksm</div>
+        <h5 class="title">{{ m.title }}</h5>
+        <p class="duration">{{ m.supplement_information[0] }}</p>
+        <div class="des">{{ m.description }}</div>
         <div>
-          <a class="play"> &#9654; Play Vocal </a>
+          <a class="play"> &#9654; {{ m.links[0]?.text }} </a>
         </div>
         <div>
-          <a class="lyrics">Lyrics (PDF) </a>
+          <a href="{{ m.links[2]?.file_url }}" class="lyrics"
+            >{{ m.links[2]?.text }}
+          </a>
         </div>
       </div>
     </div>
